@@ -6,7 +6,7 @@ const foodModel = require('./models/food')
 app.use(express.json())
 
 mongoose.connect("mongodb+srv://VictorBarbosa:HnuxaDB8cPWnc$KI5VdD@merncrud.ietem.mongodb.net/food?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
+    useNewUrlParser: true, //Esconde essa senha aqui do link
 })
 
 app.get('/', async (req,res) => {
