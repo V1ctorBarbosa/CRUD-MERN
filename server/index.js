@@ -40,6 +40,18 @@ app.put('/update', async (req,res) => {
     } catch(err) {
         console.log(err)
     }
+
+    const newDay = req.body.newDay
+
+    try {
+        await foodModel.findById(id, (err, updatedFood) => {
+            updatedFood.foodName = newFoodName
+            updatedFood.save()
+            res.send("update")
+        })
+    } catch(err) {
+        console.log(err)
+    }
 })
 
 app.get('/read', async (req, res) => {
