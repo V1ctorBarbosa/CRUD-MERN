@@ -78,7 +78,8 @@ function App() {
               </CardTop>
               <input type="text"
                       placeholder="New Food Name" 
-                      onChange={(e) => {setNewFoodName(e.target.value)}}/>
+                      onChange={(e) => {setNewFoodName(e.target.value)}}
+                      />
               <CardBottom>
                 <button onClick={() => updateFood(val._id)}> Update </button>
                 <button onClick={() => deleteFood(val._id)}> Delete </button>
