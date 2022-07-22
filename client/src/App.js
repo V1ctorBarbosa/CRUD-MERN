@@ -6,6 +6,7 @@ import {
   Cards,
   CardTop,
   InsertArea,
+  CardBottom,
 } from "./Styles"
 
 function App() {
@@ -32,17 +33,10 @@ function App() {
     })
   }
 
-
   const updateFood = (id) => {
     Axios.put("http://localhost:3001/update", {id: id, newFoodName: newFoodName}).then(() => {
       setFoodList(foodList.map((val) => {
         return val._id === id ? {_id: id, foodName: newFoodName, daysSinceIAte: val.daysSinceIAte } : val
-      }))
-    })
-    
-    Axios.put("http://localhost:3001/update", {id: id, newDay: newDay}).then(() => {
-      setFoodList(foodList.map((val) => {
-        return val._id === id ? {_id: id, foodName: val.foodName, daysSinceIAte: newDay } : val
       }))
     })
   }
@@ -79,16 +73,17 @@ function App() {
           <Cards>
             <div key={key}>
               <CardTop>
-                <h2>{val.foodName}</h2>
-                <input type="text"
-                       placeholder="New Food Name" 
-                      onChange={(e) => {setNewFoodName(e.target.value)}}/>
+                <h2>Food: {val.foodName}</h2>
+                <h2>Days: {val.daysSinceIAte}</h2>
               </CardTop>
-              <h2>{val.daysSinceIAte}</h2>
-
-              <button onClick={() => updateFood(val._id)}> Update </button>
-              <button onClick={() => deleteFood(val._id)}> Delete </button>
-          </div>
+              <input type="text"
+                      placeholder="New Food Name" 
+                      onChange={(e) => {setNewFoodName(e.target.value)}}/>
+              <CardBottom>
+                <button onClick={() => updateFood(val._id)}> Update </button>
+                <button onClick={() => deleteFood(val._id)}> Delete </button>
+              </CardBottom>
+            </div>
          </Cards>
          )})}
     </Global>
